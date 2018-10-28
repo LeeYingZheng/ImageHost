@@ -1,0 +1,449 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <title>Default Suite results</title>
+    <style type='text/css'>
+      body, table {
+        font-family: Verdana, Arial, sans-serif;
+        font-size: 12px;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      th, td {
+        padding-left: 0.3em;
+        padding-right: 0.3em;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      div, pre {
+        display: table;
+        margin: 0;
+      }
+
+      pre {
+        border: 1px solid #ccc;
+      }
+
+      .box, .lbox, .rbox {
+        border: 1px solid #ccc;
+      }
+
+      .lbox {
+        float: left;
+        margin: 0.5em;
+      }
+
+      .rbox {
+        float: right;
+        margin: 0.5em;
+      }
+
+      .lbox th, .rbox th {
+        text-align: right;
+      }
+
+      .command_line {
+        margin: 0.5em;
+      }
+
+      .command_line th {
+        text-align: left;
+      }
+
+      .command_line td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 0.5em;
+        font-family: monospace;
+        line-height: 200%;
+      }
+
+      .arg {
+        white-space: nowrap;
+        border: 1px solid #ccc;
+        padding: 1px;
+        background-color: #efe;
+      }
+
+      .selenium {
+        border: 1px solid black;
+        margin: 0.5em;
+      }
+
+      .selenium th, .selenium td {
+        text-align: left;
+        border: 1px solid black;
+      }
+
+      .title {
+        font-style: italic;
+      }
+
+      .selected {
+        background-color: #ffffcc;
+      }
+
+      .indexh {
+        text-align: center;
+      }
+
+      .index {
+        text-align: right;
+      }
+
+      .status_unexecuted .cmd_status_unexecuted {
+      }
+
+      .status_success {
+        background-color: #ccffcc;
+      }
+
+      .cmd_status_success {
+        background-color: #eeffee;
+      }
+
+      .status_warning, .cmd_status_warning {
+        background-color: #ffcccc;
+      }
+
+      .status_failure, .cmd_status_failure {
+        background-color: #ffcccc;
+      }
+
+      .status_error, .cmd_status_error {
+        background-color: #ffcccc;
+      }
+
+      .breakpoint {
+        background-color: #cccccc;
+        border: 1px solid black;
+      }
+
+      .number {
+        text-align: right;
+      }
+
+      .tabs {
+          position: relative;
+          padding: 0;
+      }
+
+      .tabs ul {
+          margin: 0;
+          padding: 0;
+      }
+
+      .tabs li {
+          list-style: none;
+          display: inline-block;
+      }
+
+      .tabs input[type=radio] {
+          display: none;
+      }
+
+      .tabs label {
+          z-index: 2;
+          position: absolute;
+          top: 0;
+          display: block;
+          background-color: #999;
+          color: #fff;
+          border-style: solid solid none;
+          border-width: 1px;
+          border-color: black;
+          width: 6em;
+          height: 2.5ex;
+          padding: 0.5ex 0.5em;
+          text-align: center;
+      }
+
+      .tabs label:hover {
+          cursor: pointer;
+          background-color: #ccc;
+          color: #000;
+      }
+
+      .tabs input[type=radio]:checked + label {
+          background-color: #fff;
+          color: #000;
+      }
+
+      .tab_source {
+          left: 0;
+      }
+
+      .tab_sequence {
+          left: 7.5em;
+      }
+
+      .tab_log {
+          left: 15em;
+      }
+
+      .tabs .contents {
+          z-index: 1;
+          display: none;
+          background: #fff;
+          border: solid 1px black;
+          margin-top: 3.5ex;
+          padding: 0.5em;
+          min-width: 22.5em;
+      }
+
+      .tabs input[type=radio]:checked + label + .contents {
+          display: block;
+      }
+
+      .tabs p {
+        margin: 0;
+        line-height: 180%;
+      }
+
+      .info {
+        margin-bottom: 0.5ex;
+      }
+
+      .info th {
+        text-align: right;
+      }
+    </style>
+    <script type="text/javascript"><!--
+      // for Safari broken css handling.
+      function selectTab(label) {
+        var selConts = label.parentNode.getElementsByClassName('contents')[0];
+        var forId = label.htmlFor;
+        var tabId = document.getElementById(forId).name;
+        var contents = document.getElementById(tabId).getElementsByClassName('contents');
+        for (var i = 0; i < contents.length; i++) {
+          var c = contents[i];
+          if (c == selConts)
+            c.style.display = 'block';
+          else
+            c.style.display = 'none';
+        }
+      }
+ --></script>
+  </head>
+  <body>
+    <h1>Default Suite results</h1>
+
+    <div class="box">
+      <div style="overflow: hidden">
+        <table class="lbox">
+          <tr>
+            <th>Result:</th><td>failure</td>
+          </tr>
+          <tr>
+            <th>Start Time:</th><td>2018-08-13 15:36:24.301 +08:00</td>
+          </tr>
+          <tr>
+            <th>Total Time:</th><td>2.426sec</td>
+          </tr>
+          <tr>
+            <th>Number of Test Total:</th><td>1</td>
+          </tr>
+          <tr>
+            <th>Number of Test Passes:</th><td>0</td>
+          </tr>
+          <tr>
+            <th>Number of Test Failures:</th><td>1</td>
+          </tr>
+          <tr>
+            <th>Number of Command Passes:</th><td>1</td>
+          </tr>
+          <tr>
+            <th>Number of Command Failures:</th><td>1</td>
+          </tr>
+          <tr>
+            <th>Number of Command Errors:</th><td>0</td>
+          </tr>
+        </table>
+        <table class="rbox">
+          <tr>
+            <th>Selenese Runner Version:</th><td>3.17.0</td>
+          </tr>
+          <tr>
+            <th>WebDriver Name:</th><td>ChromeDriver</td>
+          </tr>
+          <tr>
+            <th>Selenium Version:</th><td>3.13.0</td>
+          </tr>
+          <tr>
+            <th>Java Version:</th><td>1.8.0_171</td>
+          </tr>
+          <tr>
+            <th>Java VM Name:</th><td>Java HotSpot(TM) 64-Bit Server VM</td>
+          </tr>
+          <tr>
+            <th>Operating System:</th><td>Windows 10 10.0 (amd64)</td>
+          </tr>
+          <tr>
+            <th>Language:</th><td>en</td>
+          </tr>
+          <tr>
+            <th>Country:</th><td>US</td>
+          </tr>
+          <tr>
+            <th>Time Zone:</th><td>Asia/Singapore</td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <table class="command_line">
+          <tr><th>Command Line Arguments:</th></tr>
+          <tr><td><span class="arg">-S</span> <span class="arg">C:&#92;Users&#92;limyu&#92;Desktop&#92;TP and Resolvo&#92;selenium&#92;Results&#92;test</span> <span class="arg">--html-result</span> <span class="arg">C:&#92;Users&#92;limyu&#92;Desktop&#92;TP and Resolvo&#92;selenium&#92;Results&#92;test</span> <span class="arg">--chromedriver</span> <span class="arg">C:&#92;Users&#92;limyu&#92;Desktop&#92;TP and Resolvo&#92;selenium&#92;Webdrivers&#92;chromedriver.exe</span> <span class="arg">.&#92;Untitled Project.side</span> </td></tr>
+        </table>
+      </div>
+
+      <div>
+        <table id="suiteTable" class="selenium">
+          <tr class="title status_failure"><th>Default Suite</th></tr>
+
+  
+  
+          <tr class="status_failure"><td><a href="#testCase1">Untitled</a></td></tr>
+  
+
+        </table>
+      </div>
+    </div>
+
+
+  
+    <br>
+    <div class="tabs" id="tab1">
+      <ul>
+        <li>
+          <input name="tab1" id="tab1_source" type="radio" checked>
+          <label for="tab1_source" class="tab_source" onclick="selectTab(this)"><a name="testCase1">Source</a></label>
+          <div class="contents">
+            <table class="info"><tr><th>Source:</th><td>Untitled Project.side</td></tr></table>
+            <table cellpadding="1" cellspacing="1" border="1">
+              <thead>
+                <tr class="title status_failure"><td class="indexh">#</td><td rowspan="1" colspan="3">Untitled</td><td>&Delta;t(ms)</td><td>Screenshot</td></tr>
+              </thead>
+              <tbody>
+    
+                <tr class="cmd_status_success">
+                  <td class="index">1</td>
+      
+                  <td>open</td>
+      
+                  <td>/owa/</td>
+      
+                  <td></td>
+      
+                  <td class="number">1,926</td>
+                  <td><a href="Untitled%20Project_20180813_153625932_1.png">1:all</a></td>
+                </tr>
+    
+                <tr class="cmd_status_failure">
+                  <td class="index">2</td>
+      
+                  <td>clickAt</td>
+      
+                  <td>//div[@id=&#39;_ariaId_27&#39;]/div[2]/div[3]/div[3]/div[2]</td>
+      
+                  <td>177,3</td>
+      
+                  <td class="number">472</td>
+                  <td><a href="Untitled%20Project_20180813_153626453_2.png">1:all</a></td>
+                </tr>
+    
+              </tbody>
+            </table>
+          </div><!-- contents -->
+        </li><!-- no white spaces between LI tags.
+     --><li>
+          <input name="tab1" id="tab1_sequence" type="radio">
+          <label for="tab1_sequence" class="tab_sequence" onclick="selectTab(this)">Sequence</label>
+          <div class="contents">
+            <table class="info">
+              <tr><th>Start Time:</th><td>2018-08-13 15:36:24.320 +08:00</td></tr>
+              <tr><th>End Time:</th><td>2018-08-13 15:36:26.724 +08:00</td></tr>
+              <tr><th>Duration:</th><td>2,404 ms</td></tr>
+            </table>
+            <table cellpadding="1" cellspacing="1" border="1">
+              <thead>
+                <tr class="title status_failure"><td>Time</td><td>&Delta;t(ms)</td><td>Seq.</td><td class="indexh">#</td><td rowspan="1" colspan="3">Untitled</td><td>Result</td><td>Screenshot</td></tr>
+              </thead>
+              <tbody>
+    
+                <tr class="cmd_status_success">
+                  <td>15:36:24.326</td>
+                  <td class="number">1,926</td>
+                  <td>1</td>
+                  <td class="index">1</td>
+      
+                  <td>open</td>
+      
+                  <td>/owa/</td>
+      
+                  <td></td>
+      
+                  <td>[Success]</td>
+                  <td><a href="Untitled%20Project_20180813_153625932_1.png">1:all</a></td>
+                </tr>
+    
+                <tr class="cmd_status_failure">
+                  <td>15:36:26.252</td>
+                  <td class="number">472</td>
+                  <td>2</td>
+                  <td class="index">2</td>
+      
+                  <td>clickAt</td>
+      
+                  <td>//div[@id=&#39;_ariaId_27&#39;]/div[2]/div[3]/div[3]/div[2]</td>
+      
+                  <td>177,3</td>
+      
+                  <td>[Failure: Element //div[@id='_ariaId_27']/div[2]/div[3]/div[3]/div[2] not found]</td>
+                  <td><a href="Untitled%20Project_20180813_153626453_2.png">1:all</a></td>
+                </tr>
+    
+              </tbody>
+            </table>
+          </div><!-- contents -->
+        </li><!-- no white spaces between LI tags.
+     --><li>
+          <input name="tab1" id="tab1_log" type="radio">
+          <label for="tab1_log" class="tab_log" onclick="selectTab(this)">Log</label>
+          <div class="contents">
+            <pre>[2018-08-13 15:36:24.321 +08:00] [INFO] Start: TestCase[Untitled] (Untitled Project.side)
+[2018-08-13 15:36:24.323 +08:00] [INFO] baseURL: https://outlook.live.com
+[2018-08-13 15:36:24.334 +08:00] [INFO] &lt;1&gt; Command#1: open(&quot;/owa/&quot;)
+[2018-08-13 15:36:26.211 +08:00] [INFO] [[ATTACHMENT|<a href="Untitled%2520Project_20180813_153625932_1.png">C:\Users\limyu\Desktop\TP and Resolvo\selenium\Results\test\Untitled Project_20180813_153625932_1.png</a>]]
+[2018-08-13 15:36:26.246 +08:00] [INFO] - [Success] URL: [https://outlook.live.com/owa/] / Title: [Outlook.com - Microsoft free personal email]
+[2018-08-13 15:36:26.248 +08:00] [INFO] - Cookie: ClientId=[30131033EA7E4CF49E297AC5540C3E8F] (domain=outlook.live.com, path=/, expire=2019-08-13 15:36:25 +08:00)
+[2018-08-13 15:36:26.249 +08:00] [INFO] - Cookie: MSFPC=[GUID=75536e679158474da5c2f19fa18f7456&amp;HASH=7553&amp;LV=201808&amp;V=4&amp;LU=1534145784964] (domain=outlook.live.com, path=/, expire=2019-08-13 15:36:24 +08:00)
+[2018-08-13 15:36:26.250 +08:00] [INFO] - Cookie: OWAPF=[p:1&amp;v:16.2485.9.2593393&amp;l:mouse&amp;] (domain=outlook.live.com, path=/, expire=*)
+[2018-08-13 15:36:26.250 +08:00] [INFO] - Cookie: logonLatency=[LGN01=636697425841784790] (domain=.live.com, path=/, expire=*)
+[2018-08-13 15:36:26.251 +08:00] [INFO] - Cookie: optimizelyEndUserId=[oeu1534145785326r0.48761446398276553] (domain=.live.com, path=/, expire=2020-08-12 15:36:25 +08:00)
+[2018-08-13 15:36:26.252 +08:00] [INFO] &lt;2&gt; Command#2: clickAt(&quot;//div[@id=&#39;_ariaId_27&#39;]/div[2]/div[3]/div[3]/div[2]&quot;, &quot;177,3&quot;)
+[2018-08-13 15:36:26.687 +08:00] [INFO] [[ATTACHMENT|<a href="Untitled%2520Project_20180813_153626453_2.png">C:\Users\limyu\Desktop\TP and Resolvo\selenium\Results\test\Untitled Project_20180813_153626453_2.png</a>]]
+[2018-08-13 15:36:26.718 +08:00] [ERROR] Command#2: clickAt(&quot;//div[@id=&#39;_ariaId_27&#39;]/div[2]/div[3]/div[3]/div[2]&quot;, &quot;177,3&quot;) =&gt; [Failure: Element //div[@id=&#39;_ariaId_27&#39;]/div[2]/div[3]/div[3]/div[2] not found]
+[2018-08-13 15:36:26.722 +08:00] [ERROR] - Cookie: ClientId=[30131033EA7E4CF49E297AC5540C3E8F] (domain=outlook.live.com, path=/, expire=2019-08-13 15:36:25 +08:00)
+[2018-08-13 15:36:26.724 +08:00] [ERROR] - Cookie: MSFPC=[GUID=75536e679158474da5c2f19fa18f7456&amp;HASH=7553&amp;LV=201808&amp;V=4&amp;LU=1534145784964] (domain=outlook.live.com, path=/, expire=2019-08-13 15:36:24 +08:00)
+[2018-08-13 15:36:26.724 +08:00] [ERROR] - Cookie: OWAPF=[p:111&amp;v:16.2485.9.2593393&amp;l:mouse&amp;] (domain=outlook.live.com, path=/, expire=*)
+[2018-08-13 15:36:26.724 +08:00] [ERROR] - Cookie: logonLatency=[LGN01=636697425841784790] (domain=.live.com, path=/, expire=*)
+[2018-08-13 15:36:26.724 +08:00] [ERROR] - Cookie: optimizelyEndUserId=[oeu1534145785326r0.48761446398276553] (domain=.live.com, path=/, expire=2020-08-12 15:36:25 +08:00)
+[2018-08-13 15:36:26.724 +08:00] [INFO] End(2.404sec): TestCase[Untitled] (Untitled Project.side)
+</pre>
+          </div>
+        </li>
+      </ul>
+    </div><!-- tabs -->
+    <p>[<a href="#">Top</a>]</p>
+  
+
+  </body>
+</html>
