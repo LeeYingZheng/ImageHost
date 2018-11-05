@@ -1,5 +1,6 @@
 com\websystique\springmvc\controller\Quartz.class
 com\websystique\springmvc\configuration\HelloWorldInitializer.class
+com\websystique\springmvc\controller\TSA.class
 com\websystique\springmvc\model\Userchange.class
 com\websystique\springmvc\configuration\HelloWorldConfiguration.class
 com\websystique\springmvc\dao\BrowserDaoImpl.class
@@ -14,6 +15,7 @@ com\websystique\springmvc\service\UserDocumentServiceImpl.class
 com\websystique\springmvc\service\UserServiceImpl.class
 com\websystique\springmvc\configuration\HibernateConfiguration.class
 com\websystique\springmvc\dao\BrowserDao.class
+com\websystique\springmvc\controller\ReverseImage.class
 com\websystique\springmvc\controller\QuartzJob.class
 com\websystique\springmvc\controller\Email.class
 com\websystique\springmvc\util\FileValidator.class

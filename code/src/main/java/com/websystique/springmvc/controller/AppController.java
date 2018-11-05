@@ -6,6 +6,7 @@ import com.websystique.springmvc.service.UserDocumentService;
 import com.websystique.springmvc.service.UserService;
 import com.websystique.springmvc.util.File2Validator;
 import com.websystique.springmvc.util.FileValidator;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,16 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zeroturnaround.zip.ZipUtil;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.*;
 
@@ -94,7 +100,7 @@ public class AppController {
         List<UserDocument> documents = userDocumentService.findAllByUserId(USERID);
         List<FileChange> listOfFiles = new LinkedList<FileChange>();
 
-        for(int i =0; i<documents.size(); i++) {
+        for (int i = 0; i < documents.size(); i++) {
             FileChange f = new FileChange();
             f.setId(documents.get(i).getId());
             f.setName(documents.get(i).getName());
@@ -185,7 +191,7 @@ public class AppController {
     }
 
     @RequestMapping(value = {"/{docId}/image"}, method = RequestMethod.GET)
-    public void dlScript(@PathVariable int docId, ModelMap model, HttpServletResponse response) throws IOException {
+    public void dlImage(@PathVariable int docId, ModelMap model, HttpServletResponse response) throws IOException {
         UserDocument document = userDocumentService.findById(docId);
         response.setContentType(document.getType());
         response.setContentLength(document.getContent().length);
@@ -194,14 +200,32 @@ public class AppController {
         FileCopyUtils.copy(document.getContent(), response.getOutputStream());
     }
 
+    @RequestMapping(value = {"/{docId}/tsa"}, method = RequestMethod.GET)
+    public void dlTSA(@PathVariable int docId, ModelMap model, HttpServletResponse response) throws IOException {
+
+        UserDocument document = userDocumentService.findById(docId);
+        String tempName = FilenameUtils.removeExtension(document.getName());
+        File f = new File(LOC + docId + ".zip");
+
+        response.setContentType("application/zip");
+        response.setContentLength((int) f.length());
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + tempName + ".zip\"");
+        Path path = Paths.get(LOC + docId + ".zip");
+        byte[] zipFileBytes = Files.readAllBytes(path);
+
+        FileCopyUtils.copy(zipFileBytes, response.getOutputStream());
+
+    }
+
 
     @ResponseBody
     @RequestMapping(value = {"/rundoc"}, method = RequestMethod.POST)
-    public void runDoc(int docId) throws IOException, ParseException {
+    public void runDoc(int docId) throws IOException, ParseException, Exception {
         UserDocument document = userDocumentService.findById(docId);
-        User user = userService.findById(USERID);
-        Browser browser = browserService.findByName(user.getBrowser());
-        Quartz.runMethod(document, browser);
+//        User user = userService.findById(USERID);
+//        Browser browser = browserService.findByName(user.getBrowser());
+//        Quartz.runMethod(document);
+        ReverseImage.run(document);
     }
 
     @ResponseBody
@@ -214,6 +238,12 @@ public class AppController {
         File f = new File(LOC + docId + "/");
         if (f.exists()) {
             FileUtils.deleteDirectory(f);
+        }
+
+        //delete zip file
+        File f2 = new File(LOC + docId + ".zip");
+        if (f2.exists()) {
+            f2.delete();
         }
 
         //delete schedule
@@ -258,7 +288,7 @@ public class AppController {
                 List<UserDocument> documents = userDocumentService.findAllByUserId(USERID);
                 Browser browser = browserService.findByName(userUpdate.getBrowser());
                 for (UserDocument doc : documents
-                        ) {
+                ) {
                     Quartz.scheduleJob(doc, browser);
                 }
             }
@@ -291,27 +321,26 @@ public class AppController {
         userDocumentService.saveDocument(document);
 
         createScriptDirectory(document);
-
+        TSA.runTSA(document);
+        saveAsZip(document.getId());
         return multipartFile.getOriginalFilename();
     }
 
     private String updateDocument(UserDocument document, FileChange file) throws IOException {
-        String tmpName = file.getName()+ "." + file.getExtension();
+        String tmpName = file.getName() + "." + file.getExtension();
 
-        //delete, then create the directory again later if the name is changed
+        //delete file if the name is changed
         if (!document.getName().equals(tmpName)) {
-            File dir = new File(LOC + document.getId() + "/");
-
-            if (dir.exists()) {
-
-                FileUtils.deleteDirectory(dir);
+            File f = new File(LOC + document.getId() + "/"+document.getName());
+            if (f.exists()) {
+                f.delete();
             }
-            dir.mkdir();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
 
         document.setName(tmpName);
@@ -320,19 +349,28 @@ public class AppController {
         System.out.println(document.toString());
         userDocumentService.updateDocument(document);
 
-        File f3 = new File(LOC + document.getId() + "/" + tmpName);
-        f3.createNewFile();
-        FileCopyUtils.copy(document.getContent(), f3);
+        File f2 = new File(LOC + document.getId() + "/" + tmpName);
+        f2.createNewFile();
+        FileCopyUtils.copy(document.getContent(), f2);
+
+        saveAsZip(document.getId());
 
         return tmpName;
     }
 
     private void createScriptDirectory(UserDocument document) throws IOException {
         File dir = new File(LOC + document.getId());
-            dir.mkdir();
-            File file = new File(LOC + document.getId() + "/" + document.getName());
-            file.createNewFile();
-            FileCopyUtils.copy(document.getContent(), file);
+        dir.mkdir();
+        File file = new File(LOC + document.getId() + "/" + document.getName());
+        file.createNewFile();
+        FileCopyUtils.copy(document.getContent(), file);
 
+    }
+
+    private void saveAsZip(int docId){
+        UserDocument document = userDocumentService.findById(docId);
+        File f = new File(LOC + docId);
+        File newf = new File(LOC + docId + ".zip");
+        ZipUtil.pack(f, newf);
     }
 }

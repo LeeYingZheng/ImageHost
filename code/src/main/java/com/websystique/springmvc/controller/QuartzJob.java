@@ -24,7 +24,7 @@ public class QuartzJob implements Job{
             UserDocument doc = (UserDocument) jdMap.get("docObject");
             Browser browser = (Browser) jdMap.get("browserObject");
 
-            Quartz.runMethod(doc,browser);
+            //Quartz.runMethod(doc,browser);
 
         }
         catch (Exception ex) {

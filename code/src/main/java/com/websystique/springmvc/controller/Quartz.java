@@ -28,22 +28,22 @@ import static org.quartz.JobBuilder.newJob;
 public class Quartz{
 
     private static String LOC;
-    private static String LOC2;
-    private static String SPEED;
+    private static String SLOC;
+    private static String CLOC;
 
     @Value("${path.location}")
     private void setLoc(String privateLoc) {
         Quartz.LOC = privateLoc;
     }
 
-    @Value("${path.location2}")
-    private void setLoc2(String privateLoc2) {
-        Quartz.LOC2 = privateLoc2;
+    @Value("${selenium.location}")
+    private void setSLoc(String privateSLoc) {
+        Quartz.SLOC = privateSLoc;
     }
 
-    @Value("${test.speed}")
-    private void setSpeed(String privateSpeed) {
-        Quartz.SPEED = privateSpeed;
+    @Value("${chrome.location}")
+    private void setCLoc(String privateCLoc) {
+        Quartz.CLOC = privateCLoc;
     }
 
 
@@ -95,102 +95,95 @@ public class Quartz{
     }
 
 
-    public static void runMethod(UserDocument document,Browser browser) throws IOException, ParseException {
-
-        String tempName = FilenameUtils.removeExtension(document.getName());
-        String timestamp = new SimpleDateFormat("yyyyMMddHHmm").format(new Date());
-
-        if (tempName.equals(document.getName())){
-            tempName += "Result";
-        }
-        tempName += "-" + timestamp;
-
-        System.out.println(document);
-        ProcessBuilder builder = new ProcessBuilder(
-                "cmd.exe", "/c", "cd "+LOC2+" && " +
-                "java -jar selenese-runner.jar " + SPEED + browser.getWebdriver() +
-                " --screenshot-on-fail " + LOC2 + "\\Files\\"+ document.getId() + "\\" + tempName +
-                " --html-result "+ LOC2 + "\\Files\\" + document.getId() +"\\"+ tempName
-                + " " + LOC2 + "\\Files\\"+ document.getId() +"\\"+ document.getName());
-
-        Process p = builder.start();
-
-        BufferedReader reader =
-                new BufferedReader(new InputStreamReader(p.getInputStream()));
-        StringBuilder build = new StringBuilder();
-        String line = null;
-        while ( (line = reader.readLine()) != null) {
-            build.append(line);
-            build.append(System.getProperty("line.separator"));
-        }
-        String result = builder.toString();
-        System.out.println(result); //Apparently if you use ProcessBuilder.start in Java to start an external process
-        // you have to consume its stdout/stderr, otherwise the external process hangs.
-        // http://stackoverflow.com/questions/18505446/running-jar-exe-process-waitfor-never-return
-
-        try {
-            p.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        File dir = new File(LOC + document.getId() +"/"+ tempName + "/");
-        boolean checkFail = true;
-        for (File file : dir.listFiles()) {
-            if (file.getName().endsWith((".png"))) {
-                checkFail = false;
-            }
-
-        }
-        if(dir.listFiles().length < 2){
-            checkFail = false;
-        }
-        System.out.println(checkFail);
-        boolean isEmpty = true;
-        if(dir.listFiles().length == 0){
-            isEmpty = false; //empty means something is wrong with code. Look at the bloody code
-        }
-
-        System.out.println(isEmpty);
-            try {
-                Email.generateAndSendEmail(document,timestamp,checkFail,isEmpty);
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
-
-
-
-    }
-
-    public static void runTestMethod(Browser browser) throws IOException {
-
-        ProcessBuilder builder = new ProcessBuilder(
-                "cmd.exe", "/c", "cd "+LOC2+" && " +
-                "java -jar selenese-runner.jar" + browser.getWebdriver() +
-                " --screenshot-all " + LOC2 + "\\Files\\testScript\\ "  +
-                LOC2 + "\\Files\\testScript.html");
-
-        Process p = builder.start();
-
-        BufferedReader reader =
-                new BufferedReader(new InputStreamReader(p.getInputStream()));
-        StringBuilder build = new StringBuilder();
-        String line = null;
-        while ( (line = reader.readLine()) != null) {
-            build.append(line);
-            build.append(System.getProperty("line.separator"));
-        }
-        String result = builder.toString();
-        System.out.println(result); //Apparently if you use ProcessBuilder.start in Java to start an external process
-        // you have to consume its stdout/stderr, otherwise the external process hangs.
-        // http://stackoverflow.com/questions/18505446/running-jar-exe-process-waitfor-never-return
-
-        try {
-            p.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void runMethod(UserDocument document) throws IOException, ParseException {
+//
+//        String tempName = FilenameUtils.removeExtension(document.getName());
+//
+//        ProcessBuilder builder = new ProcessBuilder(
+//                "cmd.exe", "/c", "cd "+LOC2+" && " +
+//                "java -jar selenese-runner.jar " + SPEED + browser.getWebdriver() +
+//                " --screenshot-on-fail " + LOC2 + "\\Files\\"+ document.getId() + "\\" + tempName +
+//                " --html-result "+ LOC2 + "\\Files\\" + document.getId() +"\\"+ tempName
+//                + " " + LOC2 + "\\Files\\"+ document.getId() +"\\"+ document.getName());
+//
+//        Process p = builder.start();
+//
+//        BufferedReader reader =
+//                new BufferedReader(new InputStreamReader(p.getInputStream()));
+//        StringBuilder build = new StringBuilder();
+//        String line = null;
+//        while ( (line = reader.readLine()) != null) {
+//            build.append(line);
+//            build.append(System.getProperty("line.separator"));
+//        }
+//        String result = builder.toString();
+//        System.out.println(result); //Apparently if you use ProcessBuilder.start in Java to start an external process
+//        // you have to consume its stdout/stderr, otherwise the external process hangs.
+//        // http://stackoverflow.com/questions/18505446/running-jar-exe-process-waitfor-never-return
+//
+//        try {
+//            p.waitFor();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        File dir = new File(LOC + document.getId() +"/"+ tempName + "/");
+//        boolean checkFail = true;
+//        for (File file : dir.listFiles()) {
+//            if (file.getName().endsWith((".png"))) {
+//                checkFail = false;
+//            }
+//
+//        }
+//        if(dir.listFiles().length < 2){
+//            checkFail = false;
+//        }
+//        System.out.println(checkFail);
+//        boolean isEmpty = true;
+//        if(dir.listFiles().length == 0){
+//            isEmpty = false; //empty means something is wrong with code. Look at the bloody code
+//        }
+//
+//        System.out.println(isEmpty);
+//            try {
+//                Email.generateAndSendEmail(document,timestamp,checkFail,isEmpty);
+//            } catch (MessagingException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+//
+//    }
+//
+//    public static void runTestMethod(Browser browser) throws IOException {
+//
+//        ProcessBuilder builder = new ProcessBuilder(
+//                "cmd.exe", "/c", "cd "+LOC2+" && " +
+//                "java -jar selenese-runner.jar" + browser.getWebdriver() +
+//                " --screenshot-all " + LOC2 + "\\Files\\testScript\\ "  +
+//                LOC2 + "\\Files\\testScript.html");
+//
+//        Process p = builder.start();
+//
+//        BufferedReader reader =
+//                new BufferedReader(new InputStreamReader(p.getInputStream()));
+//        StringBuilder build = new StringBuilder();
+//        String line = null;
+//        while ( (line = reader.readLine()) != null) {
+//            build.append(line);
+//            build.append(System.getProperty("line.separator"));
+//        }
+//        String result = builder.toString();
+//        System.out.println(result); //Apparently if you use ProcessBuilder.start in Java to start an external process
+//        // you have to consume its stdout/stderr, otherwise the external process hangs.
+//        // http://stackoverflow.com/questions/18505446/running-jar-exe-process-waitfor-never-return
+//
+//        try {
+//            p.waitFor();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }

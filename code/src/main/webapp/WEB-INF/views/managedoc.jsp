@@ -63,7 +63,8 @@
             <br><br>
             <button class="button-secondary pure-button" onclick="location.href='/ImageHost/${document.id}/image';"><i
                     class="fa fa-file">Download image</i></button>
-
+            <button class="button-secondary pure-button" onclick="location.href='/ImageHost/${document.id}/tsa';"><i
+                    class="fa fa-file">Download image and TSA</i></button>
             <button class="button-secondary pure-button" onclick="location.href='/ImageHost/image/${document.id}/result';"><i
                     class="fa fa-download">Download result</i></button>
 

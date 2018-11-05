@@ -1,0 +1,80 @@
+{
+  "id": "5a9c2215-9cc5-418f-ae71-5cafed9df7d0",
+  "version": "1.1",
+  "name": "test",
+  "url": "https://google.com",
+  "tests": [{
+    "id": "034494e0-0755-400c-a243-d0ce7071dadd",
+    "name": "ttt",
+    "commands": [{
+      "id": "3d3bba80-28b5-418a-91c6-41337180ba15",
+      "comment": "",
+      "command": "open",
+      "target": "https://www.google.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "65eb8e53-daeb-42b3-a2d4-e993f61465b4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1352x714",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2456ecd1-38a0-439b-b6a3-382b566dfa7c",
+      "comment": "",
+      "command": "click",
+      "target": "id=lst-ib",
+      "targets": [
+        ["id=lst-ib", "id"],
+        ["name=q", "name"],
+        ["css=#lst-ib", "css"],
+        ["css=#lst-ib", "css:finder"],
+        ["xpath=//input[@id='lst-ib']", "xpath:attributes"],
+        ["xpath=//div[@id='gs_lc0']/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e991786e-2161-438d-be92-3729b2231376",
+      "comment": "",
+      "command": "type",
+      "target": "id=lst-ib",
+      "targets": [
+        ["id=lst-ib", "id"],
+        ["name=q", "name"],
+        ["css=#lst-ib", "css"],
+        ["css=#lst-ib", "css:finder"],
+        ["xpath=//input[@id='lst-ib']", "xpath:attributes"],
+        ["xpath=//div[@id='gs_lc0']/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "390f013a-7d99-4004-a33f-6e3e730123c8",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=lst-ib",
+      "targets": [
+        ["id=lst-ib", "id"],
+        ["name=q", "name"],
+        ["css=#lst-ib", "css"],
+        ["css=#lst-ib", "css:finder"],
+        ["xpath=//input[@id='lst-ib']", "xpath:attributes"],
+        ["xpath=//div[@id='gs_lc0']/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }]
+  }],
+  "suites": [{
+    "id": "5097aead-7e31-4a4d-99e4-1d611cdb66ba",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://images.google.com/"],
+  "plugins": []
+}
