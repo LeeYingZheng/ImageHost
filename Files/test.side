@@ -1,0 +1,146 @@
+{
+  "id": "5a9c2215-9cc5-418f-ae71-5cafed9df7d0",
+  "version": "1.1",
+  "name": "test",
+  "url": "https://images.google.com",
+  "tests": [{
+    "id": "8e8acc7b-d03b-4d61-bda9-28ada65760ec",
+    "name": "t",
+    "commands": [{
+      "id": "d7da0513-bf20-453d-a5d7-5e2c1010fff0",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "86e859cb-1fda-4cf1-8ad0-ccaab14d14d6",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1352x714",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "42ca47f4-85c7-4951-817e-bc8acc07ea7d",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=qbi",
+      "targets": [
+        ["id=qbi", "id"],
+        ["css=#qbi", "css"],
+        ["css=#qbi", "css:finder"],
+        ["xpath=//span[@id='qbi']", "xpath:attributes"],
+        ["xpath=//span[@id='gs_si0']/span", "xpath:idRelative"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b5715cc-2607-4425-abbb-45b2a8189a9f",
+      "comment": "",
+      "command": "click",
+      "target": "id=qbi",
+      "targets": [
+        ["id=qbi", "id"],
+        ["css=#qbi", "css"],
+        ["css=#qbi", "css:finder"],
+        ["xpath=//span[@id='qbi']", "xpath:attributes"],
+        ["xpath=//span[@id='gs_si0']/span", "xpath:idRelative"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9323ca0-64f7-4c25-ba9a-3287d1e562b4",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=qbi",
+      "targets": [
+        ["id=qbi", "id"],
+        ["css=#qbi", "css"],
+        ["css=#qbi", "css:finder"],
+        ["xpath=//span[@id='qbi']", "xpath:attributes"],
+        ["xpath=//span[@id='gs_si0']/span", "xpath:idRelative"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "303daace-064e-47fd-a947-25b4f8a6896b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Upload an image",
+      "targets": [
+        ["linkText=Upload an image", "linkText"],
+        ["css=.qbtbtxt:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Upload an image')]", "xpath:link"],
+        ["xpath=//a[@onclick='google.qb.ti(true);return false']", "xpath:attributes"],
+        ["xpath=//div[@id='qbug']/div/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:void(0)')])[3]", "xpath:href"],
+        ["xpath=//form/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "515bb212-2389-41f0-94dc-2e99ea99519d",
+      "comment": "",
+      "command": "click",
+      "target": "id=qbfile",
+      "targets": [
+        ["id=qbfile", "id"],
+        ["name=encoded_image", "name"],
+        ["css=#qbfile", "css"],
+        ["css=#qbfile", "css:finder"],
+        ["xpath=//input[@id='qbfile']", "xpath:attributes"],
+        ["xpath=//div[@id='qbfilebp']/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c396333-bded-438e-893a-dfb9e9ae50cc",
+      "comment": "",
+      "command": "type",
+      "target": "id=qbfile",
+      "targets": [
+        ["id=qbfile", "id"],
+        ["name=encoded_image", "name"],
+        ["css=#qbfile", "css"],
+        ["css=#qbfile", "css:finder"],
+        ["xpath=//input[@id='qbfile']", "xpath:attributes"],
+        ["xpath=//div[@id='qbfilebp']/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "C:\\Users\\limyu\\Pictures\\Camera Roll\\WIN_20180314_16_26_44_Pro.jpg"
+    }, {
+      "id": "ec20ee5e-3526-46af-aa4c-587b959651e6",
+      "comment": "",
+      "command": "click",
+      "target": "css=div.O1id0e",
+      "targets": [
+        ["css=div.O1id0e", "css"],
+        ["css=.O1id0e", "css:finder"],
+        ["xpath=//div[@id='jHnbRc']/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div[2]/div/div/div/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5813f60-6d02-4ef1-8e6e-a5cc02c2de54",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=div.O1id0e",
+      "targets": [
+        ["css=div.O1id0e", "css"],
+        ["css=.O1id0e", "css:finder"],
+        ["xpath=//div[@id='jHnbRc']/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div[2]/div/div/div/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": "No other sizes of this image found."
+    }]
+  }],
+  "suites": [{
+    "id": "5097aead-7e31-4a4d-99e4-1d611cdb66ba",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://images.google.com/"],
+  "plugins": []
+}
